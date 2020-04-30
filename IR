@@ -1,0 +1,38 @@
+def main():
+    salario = float(input("Digite o valor do salário: "))
+    ir = calculo_atual(salario)
+    ira = calculo_ajustada(salario)
+    print(f"O valor do IR Atual descontado será de R${ir}")
+    print(f"O valor do IR Ajustado descontado será de R${ira}")
+
+
+def calculo_atual(salario):
+    if salario <= 1903.98:
+        ir = 0
+    elif 1903.99 <= salario <= 2826.65:
+        ir = salario * 0.075
+    elif  2826.66 <= salario <= 3751.05:
+        ir = salario * 0.15
+    elif 3751.06 <= salario <= 4664.68:
+        ir = salario * 0.225
+    elif salario > 4664.68:
+        ir = salario * 0.275
+    
+    return ir
+
+def calculo_ajustada(valor):
+    if valor <= 3881.65:
+        ira = 0
+    elif 3881.66 <= valor <= 5714.11:
+        ira = valor * 0.075
+    elif  5714.12 <=valor <= 7654.67:
+        ira = valor * 0.15
+    elif 7654.68 <= valor <= 9564.42:
+        ira = valor * 0.225
+    elif valor > 9564.42:
+        ira = valor * 0.275
+    
+    return ira
+
+
+main()
