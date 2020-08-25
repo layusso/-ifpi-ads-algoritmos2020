@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+    </head>
+
+    <body>
+        <h1>Calcular Impostos</h1>
+        <label>Dados do Funcionário: </label><br>
+        <input id="horas" type="number" placeholder="Horas Trabalhadas"><br>
+        <input id="dependentes" type="number" placeholder="Número de Dependentes"><br>
+        <button id="botao">Consultar</button>
+
+        <ul id="print">
+
+        </ul>
+
+        <script>
+            /*Inputs*/
+            var horas = document.getElementById('horas');
+            var dependentes = document.getElementById('dependentes');
+            let botao = document.getElementById('botao');
+            let print = document.getElementById('print');
+            
+
+            const consultar_dados = function(){
+                /*Constantes*/
+                const valor_hora = 12;
+                const inss = 0.085;
+                const ir = 0.05;
+
+                /*Processamento*/
+                var valor_dependentes = dependentes.value * 40
+                var salario = (valor_hora * horas.value) + valor_dependentes;
+                var inss_desc = salario * inss;
+                var ir_desc = salario * ir;
+                var salario_liquido = salario - inss_desc - ir_desc;
+
+                /*Apresentar dados*/                
+                let item = document.createElement('li')
+                item.textContent = "Salário liquído: R$" + salario_liquido.toFixed(2) + "/ INSS: R$" + inss_desc.toFixed(2) + "/ IR: R$" + ir_desc.toFixed(2)
+                print.appendChild(item)
+                horas.value = ''
+                dependentes.value = ''
+            }
+
+            botao.addEventListener('click', consultar_dados)
+        </script>
+    </body>
+</html>

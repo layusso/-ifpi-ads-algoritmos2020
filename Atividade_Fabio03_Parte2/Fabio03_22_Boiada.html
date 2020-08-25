@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset = "utf-8">
+    </head>
+
+
+    <body>
+        <h1>Cadastro dos bois</h1>
+        <label>Ficha</label><br>
+        <input id="nome" type="text" placeholder="Nome"><br>
+        <input id="identific" type="number" min="1" placeholder="Numero de Identificação"><br>
+        <input id="peso" type="number" min="1" placeholder="Peso"><br>
+        <button id="botao">Cadastrar</button><br>
+        <p>Clique para consultar: </p>
+        <button id="consult">Consultar</button>
+
+        <ul id="print">
+
+        </ul>
+
+
+        <script>
+            let botao = document.getElementById('botao');
+            let nome = document.getElementById('nome')
+            let consult = document.getElementById('consult');
+            let print = document.getElementById('print');
+            var peso = document.getElementById('peso');
+            var ident = document.getElementById('identific');
+            
+            var maior = 0
+            var n_maior = 0
+            var n_menor = 0
+            var menor = 30000000
+
+            const solicitar_cadastro = function(){
+                if (peso.value > maior) {
+                    maior = peso.value;
+                    n_maior = identific.value;
+                };
+
+                if (peso.value < menor) {
+                    menor = peso.value;
+                    n_menor = identific.value;
+                };
+
+                peso.value = ''
+                ident.value = ''
+                nome.value = ''
+
+                alert("Cadastrado com Sucesso!")
+            }
+
+            const consultar_dados = function(){
+                let item = document.createElement('li')
+                let item2 = document.createElement('li')
+                item.textContent = "Maior peso: " + maior.toString() + " Inscrição: " + n_maior.toString();
+                item2.textContent = "Menor peso: " + menor.toString() + " Inscrição: " + n_menor.toString();
+                print.appendChild(item)
+                print.appendChild(item2)
+            }    
+                
+    
+            consult.addEventListener('click', consultar_dados);
+            botao.addEventListener('click', solicitar_cadastro)
+        </script>
+        
+    </body>
+</html>
