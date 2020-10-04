@@ -11,7 +11,7 @@ def main():
           "8 - Contagem geral(Pares, Impares, Zerados). \n" \
           "9 - Média dos valores. \n" \
           "10 - Contar ocorrências de um valor. \n" \
-          "11 - Transformar valores(Em manutenção xD). \n" \
+          "11 - Transformar valores. \n" \
           "0 - Sair")
 
     opcao = int(input("Digite a operação desejada: "))
@@ -179,9 +179,6 @@ def contagem_ocorrencias(lista):
 
 
 def transformar(lista):
-    '''Problemas:
-    Por algum motivo as opções 2 e 3 não são lidas.
-    A função não está modificando a lista principal.'''
     
     print("Selecione o que deseja transformar \n" \
          "1 - Dobrar valores \n" \
@@ -190,7 +187,7 @@ def transformar(lista):
          "0 - voltar...")
 
     opcao = int(input("Digite o valor da operação: "))
-    while opcao == True:
+    while True:
         if opcao == 1:
             lista = dobrar(lista)
             
@@ -198,38 +195,36 @@ def transformar(lista):
             opcao = int(input("Digite o valor da operação: "))
 
         elif opcao == 2:
-            lista = []
+            apagar(lista)
             print("Valores apagados!")
             opcao = int(input("Digite o valor da operação: "))
 
-        if opcao == 3:
+        elif opcao == 3:
             n = int(input("Informe o valor de n: "))
             lista = dobrar_multiplos(lista, n)
-            print(lista)
             print("Valores dobrados!")
             opcao = int(input("Digite o valor da operação: "))
 
-        if opcao == 0:
+        elif opcao == 0:
             break
 
 
 def dobrar(lista):
-    nova_lista = []
-    for i in lista:
-        nova_lista.append(i*2)
-    
-    return nova_lista
+    for i in range(len(lista)):
+        lista[i] = lista[i] * 2
 
 
 def dobrar_multiplos(lista, n):
-    nova_lista = []
-    for i in lista:
+    for i in range(len(lista)):
         if i % n == 0:
-            nova_lista.append(i*2)
-        else:
-            nova_lista.append(i)
+            lista[i] = lista[i] * 2
     
-    return nova_lista
+def apagar(lista):
+    for i in lista:
+        lista.remove(i)
+    
+    if len(lista) == 1:
+        lista.remove(lista[0])
 
 
 main()
